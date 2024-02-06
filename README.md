@@ -8,7 +8,7 @@ Este projeto corresponde à etapa técnica do processo seletivo para Desenvolved
 - [Requisitos](#requisitos)
 - [Como usar](#como-usar)
 
-[Veja este projeto em ambiente de desenvolvimento do Github](https://github.dev/arthurbicego/nanodata-xml-reader/)
+[Veja este projeto em ambiente de desenvolvimento do Github](https://github.dev/arthurbicego/xml-reader/)
 
 ---
 
@@ -101,7 +101,7 @@ Javascript:
 2 - Faça o download dos arquivos deste repositório ou clone o projeto utilizando git para a sua máquina local :
 
 ```
-git clone https://github.dev/arthurbicego/nanodata-xml-reader/
+git clone https://github.dev/arthurbicego/xml-reader/
 ```
 
 3 - Navegue até a pasta raiz do projeto e construa a imagem Docker utilizando o terminal com o seguinte comando:
