@@ -1,6 +1,6 @@
 package br.com.nanodata.xmlreader.controllers;
 
-import br.com.nanodata.xmlreader.models.dtos.SaveRequestDTO;
+import br.com.nanodata.xmlreader.models.dtos.SaveDTO;
 import br.com.nanodata.xmlreader.services.ReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,7 @@ public class ReaderController {
     private ReaderService readerService;
 
     @PostMapping("/save")
-    public SaveRequestDTO save(@RequestParam("files") List<MultipartFile> files) {
-        return readerService.processFile(files);
+    public SaveDTO save(@RequestParam("files") List<MultipartFile> files) {
+        return readerService.processFiles(files);
     }
 }
