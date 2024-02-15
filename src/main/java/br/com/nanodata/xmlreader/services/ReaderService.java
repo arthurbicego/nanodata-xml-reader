@@ -1,8 +1,10 @@
 package br.com.nanodata.xmlreader.services;
 
+import br.com.nanodata.xmlreader.models.dtos.FileDataDTO;
 import br.com.nanodata.xmlreader.models.dtos.SaveDTO;
 import br.com.nanodata.xmlreader.models.entities.FileContent;
 import br.com.nanodata.xmlreader.models.entities.FileData;
+import br.com.nanodata.xmlreader.models.mappers.FileDataMapper;
 import br.com.nanodata.xmlreader.repositories.FileDataRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,7 @@ public class ReaderService {
 
     @Autowired
     private FileDataRepository fileDataRepository;
+    private FileDataMapper fileDataMapper;
 
     public SaveDTO processFiles(List<MultipartFile> files) {
         List<String> fileNameList = new ArrayList<>();
@@ -91,4 +94,8 @@ public class ReaderService {
     }
 
 
+    public List<FileDataDTO> getAll() {
+        List<FileData> listFileData = fileDataRepository.findAll();
+        return listFileData.stream().map(fileDataMapper::toDTO).toList();
+    }
 }

@@ -1,5 +1,6 @@
 package br.com.nanodata.xmlreader.controllers;
 
+import br.com.nanodata.xmlreader.models.dtos.FileDataDTO;
 import br.com.nanodata.xmlreader.models.dtos.SaveDTO;
 import br.com.nanodata.xmlreader.services.ReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,4 +20,10 @@ public class ReaderController {
     public SaveDTO save(@RequestParam("files") List<MultipartFile> files) {
         return readerService.processFiles(files);
     }
+
+    @GetMapping("/all")
+    public List<FileDataDTO> getAllFileData() {
+        return readerService.getAll();
+    }
+    
 }
