@@ -13,14 +13,16 @@ public class FileDataDTO {
 
     private Long id;
     private String fileId;
-    private OffsetDateTime ideDhEmi;
-    private String ideCuf;
-    private String ideNnf;
-    private String emitXFant;
-    private String emitCnpj;
-    private String destXNome;
-    private String destCnpj;
-    private String IcmsTotVTotTrib;
-    private String IcmsTotVnf;
+    private OffsetDateTime idedhEmi;
+    private String idenNF;
+    private String idecUF;
+    private String emitCNPJ;
+    private String emitxFant;
+    private String destCNPJ;
+    private String destxNome;
+    private String iCMSTotvTotTrib;
+    private String iCMSTotvNF;
     private Long fileContentId;
+
+
 }

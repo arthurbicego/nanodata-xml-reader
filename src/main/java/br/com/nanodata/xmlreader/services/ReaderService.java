@@ -33,6 +33,8 @@ public class ReaderService {
 
     @Autowired
     private FileDataRepository fileDataRepository;
+
+    @Autowired
     private FileDataMapper fileDataMapper;
 
     public SaveDTO processFiles(List<MultipartFile> files) {
@@ -78,8 +80,8 @@ public class ReaderService {
         fileData.setIdenNF(getTagValue(document, "/nfeProc/NFe/infNFe/ide/nNF"));
         fileData.setEmitxFant(getTagValue(document, "/nfeProc/NFe/infNFe/emit/xFant"));
         fileData.setEmitCNPJ(getTagValue(document, "/nfeProc/NFe/infNFe/emit/CNPJ"));
-        fileData.setDestCNPJ(getTagValue(document, "/nfeProc/NFe/infNFe/dest/xNome"));
-        fileData.setDestxNome(getTagValue(document, "/nfeProc/NFe/infNFe/dest/CNPJ"));
+        fileData.setDestCNPJ(getTagValue(document, "/nfeProc/NFe/infNFe/dest/CNPJ"));
+        fileData.setDestxNome(getTagValue(document, "/nfeProc/NFe/infNFe/dest/xNome"));
         fileData.setICMSTotvTotTrib(getTagValue(document, "/nfeProc/NFe/infNFe/total/ICMSTot/vTotTrib"));
         fileData.setICMSTotvNF(getTagValue(document, "/nfeProc/NFe/infNFe/total/ICMSTot/vNF"));
 
@@ -92,7 +94,6 @@ public class ReaderService {
         XPath xPath = XPathFactory.newInstance().newXPath();
         return xPath.compile(fileTag).evaluate(document, XPathConstants.STRING).toString();
     }
-
 
     public List<FileDataDTO> getAll() {
         List<FileData> listFileData = fileDataRepository.findAll();

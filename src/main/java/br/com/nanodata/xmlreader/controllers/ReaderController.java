@@ -25,5 +25,5 @@ public class ReaderController {
     public List<FileDataDTO> getAllFileData() {
         return readerService.getAll();
     }
-    
+
 }
