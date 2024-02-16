@@ -1,5 +1,6 @@
 package br.com.nanodata.xmlreader.controllers;
 
+import br.com.nanodata.xmlreader.exceptions.NotFoundException;
 import br.com.nanodata.xmlreader.models.dtos.FileDataDTO;
 import br.com.nanodata.xmlreader.models.dtos.SaveDTO;
 import br.com.nanodata.xmlreader.services.ReaderService;
@@ -28,7 +29,7 @@ public class ReaderController {
     }
 
     @GetMapping("/download/{id}")
-    public ResponseEntity<byte[]> getById(@PathVariable Long id) {
+    public ResponseEntity<byte[]> getById(@PathVariable Long id) throws NotFoundException {
         return readerService.downloadFileById(id);
     }
 

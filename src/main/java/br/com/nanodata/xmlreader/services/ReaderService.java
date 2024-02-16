@@ -1,5 +1,6 @@
 package br.com.nanodata.xmlreader.services;
 
+import br.com.nanodata.xmlreader.exceptions.NotFoundException;
 import br.com.nanodata.xmlreader.models.dtos.FileDataDTO;
 import br.com.nanodata.xmlreader.models.dtos.SaveDTO;
 import br.com.nanodata.xmlreader.models.entities.FileContent;
@@ -8,6 +9,7 @@ import br.com.nanodata.xmlreader.models.mappers.FileDataMapper;
 import br.com.nanodata.xmlreader.repositories.FileDataRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.w3c.dom.Document;
@@ -26,6 +28,7 @@ import java.io.InputStream;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -98,5 +101,24 @@ public class ReaderService {
     public List<FileDataDTO> getAll() {
         List<FileData> listFileData = fileDataRepository.findAll();
         return listFileData.stream().map(fileDataMapper::toDTO).toList();
+    }
+
+    public ResponseEntity<byte[]> downloadFileById(Long fileDataId) throws NotFoundException {
+        FileData fileData = findFileDataById(fileDataId);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_XML);
+        headers.setContentDisposition(ContentDisposition.builder("attachment").filename(fileData.getFileContent().getOriginalFileName()).build());
+        return new ResponseEntity<>(fileData.getFileContent().getContent(), headers, HttpStatus.OK);
+    }
+
+    private FileData findFileDataById(Long id) throws NotFoundException {
+        Optional<FileData> optionalFileData = fileDataRepository.findById(id);
+        if (optionalFileData.isPresent()) {
+            return optionalFileData.get();
+        } else {
+            NotFoundException exception = new NotFoundException("Nenhum arquivo encontrado com o ID: " + id);
+            log.error("Um erro ocorreu ao processar o arquivo com ID: " + id, exception);
+            throw exception;
+        }
     }
 }
