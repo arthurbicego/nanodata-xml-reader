@@ -50,7 +50,7 @@ public class ReaderService {
         return new SaveDTO(fileNameList.size() + " arquivo(s) salvo(s) com sucesso: " + fileNameList);
     }
 
-    public void processEachFile(MultipartFile file) throws IOException, ParserConfigurationException, SAXException,
+    private void processEachFile(MultipartFile file) throws IOException, ParserConfigurationException, SAXException,
             XPathExpressionException {
         FileContent fileContent = convertIntoFileContent(file);
         FileData fileData = convertIntoFileData(file, fileContent);
