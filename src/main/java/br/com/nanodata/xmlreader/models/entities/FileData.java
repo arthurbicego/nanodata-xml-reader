@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
 @Entity
@@ -17,7 +18,7 @@ public class FileData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String fileId;
-    private OffsetDateTime idedhEmi;
+    private LocalDateTime idedhEmi;
     private String idenNF;
     private String idecUF;
     private String emitCNPJ;

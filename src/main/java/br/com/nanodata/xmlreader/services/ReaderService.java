@@ -25,7 +25,9 @@ import javax.xml.xpath.XPathFactory;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -77,7 +79,7 @@ public class ReaderService {
         FileData fileData = new FileData();
 
         fileData.setFileId(getTagValue(document, "/nfeProc/NFe/infNFe/@Id"));
-        fileData.setIdedhEmi(OffsetDateTime.parse(getTagValue(document, "/nfeProc/NFe/infNFe/ide/dhEmi")));
+        fileData.setIdedhEmi(LocalDateTime.parse(getTagValue(document, "/nfeProc/NFe/infNFe/ide/dhEmi"),DateTimeFormatter.ISO_OFFSET_DATE_TIME));
         String ideCuf = getTagValue(document, "/nfeProc/NFe/infNFe/ide/cUF");
         fileData.setIdecUF(ideCuf);
         fileData.setIdenNF(getTagValue(document, "/nfeProc/NFe/infNFe/ide/nNF"));
