@@ -18,9 +18,7 @@ public class FileDataMapper {
     }
 
     public FileDataDTO toDTO(FileData fileData) {
-        FileDataDTO fileDataDTO = modelMapper.map(fileData, FileDataDTO.class);
-        fileDataDTO.setFileContentId(fileData.getFileContent().getId());
-        return fileDataDTO;
+        return modelMapper.map(fileData, FileDataDTO.class);
     }
 
 }

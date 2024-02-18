@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
 
 @Data
 @AllArgsConstructor
@@ -21,9 +20,7 @@ public class FileDataDTO {
     private String emitxFant;
     private String destCNPJ;
     private String destxNome;
-    private String iCMSTotvTotTrib;
-    private String iCMSTotvNF;
-    private Long fileContentId;
-
+    private Double icmstotvTotTrib;
+    private Double icmstotvNF;
 
 }

@@ -26,7 +26,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -79,16 +78,15 @@ public class ReaderService {
         FileData fileData = new FileData();
 
         fileData.setFileId(getTagValue(document, "/nfeProc/NFe/infNFe/@Id"));
-        fileData.setIdedhEmi(LocalDateTime.parse(getTagValue(document, "/nfeProc/NFe/infNFe/ide/dhEmi"),DateTimeFormatter.ISO_OFFSET_DATE_TIME));
-        String ideCuf = getTagValue(document, "/nfeProc/NFe/infNFe/ide/cUF");
-        fileData.setIdecUF(ideCuf);
+        fileData.setIdedhEmi(LocalDateTime.parse(getTagValue(document, "/nfeProc/NFe/infNFe/ide/dhEmi"), DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        fileData.setIdecUF(getTagValue(document, "/nfeProc/NFe/infNFe/ide/cUF"));
         fileData.setIdenNF(getTagValue(document, "/nfeProc/NFe/infNFe/ide/nNF"));
         fileData.setEmitxFant(getTagValue(document, "/nfeProc/NFe/infNFe/emit/xFant"));
         fileData.setEmitCNPJ(getTagValue(document, "/nfeProc/NFe/infNFe/emit/CNPJ"));
         fileData.setDestCNPJ(getTagValue(document, "/nfeProc/NFe/infNFe/dest/CNPJ"));
         fileData.setDestxNome(getTagValue(document, "/nfeProc/NFe/infNFe/dest/xNome"));
-        fileData.setICMSTotvTotTrib(getTagValue(document, "/nfeProc/NFe/infNFe/total/ICMSTot/vTotTrib"));
-        fileData.setICMSTotvNF(getTagValue(document, "/nfeProc/NFe/infNFe/total/ICMSTot/vNF"));
+        fileData.setIcmstotvTotTrib(Double.parseDouble(getTagValue(document, "/nfeProc/NFe/infNFe/total/ICMSTot/vTotTrib")));
+        fileData.setIcmstotvNF(Double.parseDouble(getTagValue(document, "/nfeProc/NFe/infNFe/total/ICMSTot/vNF")));
 
         fileData.setFileContent(fileContent);
 

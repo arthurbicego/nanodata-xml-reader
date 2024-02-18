@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
 
 @Entity
 @Data
@@ -25,8 +24,8 @@ public class FileData {
     private String emitxFant;
     private String destCNPJ;
     private String destxNome;
-    private String iCMSTotvTotTrib;
-    private String iCMSTotvNF;
+    private Double icmstotvTotTrib;
+    private Double icmstotvNF;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "file_content_id", referencedColumnName = "id")
     private FileContent fileContent;
